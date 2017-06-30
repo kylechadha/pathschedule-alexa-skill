@@ -1,0 +1,19 @@
+{
+  "name": "skill-pathschedule",
+  "version": "1.0.0",
+  "description": "When's the next PATH train?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "fact"
+  ],
+  "author": "kylechadha",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "alexa-sdk": "^1.0.10"
+  }
+}
