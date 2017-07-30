@@ -2,6 +2,10 @@
   "name": "skill-pathschedule",
   "version": "1.0.0",
   "description": "When's the next PATH train?",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kylechadha/pathschedule-alexa-skill.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,6 +20,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "alexa-sdk": "^1.0.10",
+    "gtfs": "0.12.0",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13"
   }
