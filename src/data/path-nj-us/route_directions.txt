@@ -1,0 +1,14 @@
+route_id,direction_id,direction_name
+5744,0,No direction
+859,0,Outbound
+860,0,Outbound
+861,0,Outbound
+1024,0,Outbound
+862,0,Outbound
+5746,0,No direction
+5745,0,No direction
+859,1,Inbound
+860,1,Inbound
+861,1,Inbound
+1024,1,Inbound
+862,1,Inbound

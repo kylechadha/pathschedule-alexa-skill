@@ -1,0 +1,3 @@
+agency_id,agency_name,agency_url,agency_timezone,agency_phone,agency_fare_url,agency_lang
+631,Port Authority of NY and NJ,http://laguardiaairport.com/at-the-airport/connecting-within-laguardia/,America/New_York,(718) 533-3400,,en
+151,Port Authority Trans-Hudson Corporation,http://www.panynj.gov/path/,America/New_York,(800) 234-7284,http://www.panynj.gov/path/fares.html,en

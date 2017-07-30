@@ -1,0 +1,6 @@
+service_id,service_name,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+5302A6349,Beginning February 20th (Mon-Sun),1,1,1,1,1,1,1,20170208,20180101
+5394A6507,Starting Jan 1 2017 (Mon-Fri),1,1,1,1,1,0,0,20170101,20180101
+5395A6507,Starting Jan 1 2017 (Sat),0,0,0,0,0,1,0,20170101,20180101
+5459A6540,Holiday Schedules (No regular service days),0,0,0,0,0,0,0,20170101,20180101
+5396A6507,Starting Jan 1 2017 (Sun),0,0,0,0,0,0,1,20170101,20180101

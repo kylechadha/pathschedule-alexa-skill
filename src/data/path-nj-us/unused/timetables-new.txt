@@ -1,0 +1,32 @@
+timetable_id,route_id,direction_id,start_date,end_date,monday,tuesday,wednesday,thursday,friday,saturday,sunday,route_label,service_notes,direction_label,orientation
+1,5744,0,20170208,20180101,1,1,1,1,1,1,1,Blue Route,Beginning February 20th,No direction,horizontal
+2,859,0,20170101,20180101,0,0,0,0,0,0,0,Hoboken - 33rd Street,Holiday Schedules,Outbound,horizontal
+3,859,0,20170101,20180101,1,1,1,1,1,0,0,Hoboken - 33rd Street,Starting Jan 1 2017,Outbound,horizontal
+4,859,1,20170101,20180101,0,0,0,0,0,0,0,Hoboken - 33rd Street,Holiday Schedules,Inbound,horizontal
+5,859,1,20170101,20180101,1,1,1,1,1,0,0,Hoboken - 33rd Street,Starting Jan 1 2017,Inbound,horizontal
+6,860,0,20170101,20180101,0,0,0,0,0,0,0,Hoboken - World Trade Center,Holiday Schedules,Outbound,horizontal
+7,860,0,20170101,20180101,1,1,1,1,1,0,0,Hoboken - World Trade Center,Starting Jan 1 2017,Outbound,horizontal
+8,860,1,20170101,20180101,0,0,0,0,0,0,0,Hoboken - World Trade Center,Holiday Schedules,Inbound,horizontal
+9,860,1,20170101,20180101,1,1,1,1,1,0,0,Hoboken - World Trade Center,Starting Jan 1 2017,Inbound,horizontal
+10,861,0,20170101,20180101,0,0,0,0,0,0,0,Journal Square - 33rd Street,Holiday Schedules,Outbound,horizontal
+11,861,0,20170101,20180101,1,1,1,1,1,0,0,Journal Square - 33rd Street,Starting Jan 1 2017,Outbound,horizontal
+12,861,1,20170101,20180101,0,0,0,0,0,0,0,Journal Square - 33rd Street,Holiday Schedules,Inbound,horizontal
+13,861,1,20170101,20180101,1,1,1,1,1,0,0,Journal Square - 33rd Street,Starting Jan 1 2017,Inbound,horizontal
+14,1024,0,20170101,20180101,0,0,0,0,0,0,0,Journal Square - 33rd Street (via Hoboken),Holiday Schedules,Outbound,horizontal
+15,1024,0,20170101,20180101,0,0,0,0,0,0,1,Journal Square - 33rd Street (via Hoboken),Starting Jan 1 2017,Outbound,horizontal
+16,1024,0,20170101,20180101,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Starting Jan 1 2017,Outbound,horizontal
+17,1024,0,20170101,20180101,1,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Starting Jan 1 2017,Outbound,horizontal
+18,1024,1,20170101,20180101,0,0,0,0,0,0,0,Journal Square - 33rd Street (via Hoboken),Holiday Schedules,Inbound,horizontal
+19,1024,1,20170101,20180101,0,0,0,0,0,0,1,Journal Square - 33rd Street (via Hoboken),Starting Jan 1 2017,Inbound,horizontal
+20,1024,1,20170101,20180101,0,0,0,0,0,1,0,Journal Square - 33rd Street (via Hoboken),Starting Jan 1 2017,Inbound,horizontal
+21,1024,1,20170101,20180101,1,1,1,1,1,0,0,Journal Square - 33rd Street (via Hoboken),Starting Jan 1 2017,Inbound,horizontal
+22,862,0,20170101,20180101,0,0,0,0,0,0,0,Newark - World Trade Center,Holiday Schedules,Outbound,horizontal
+23,862,0,20170101,20180101,0,0,0,0,0,0,1,Newark - World Trade Center,Starting Jan 1 2017,Outbound,horizontal
+24,862,0,20170101,20180101,0,0,0,0,0,1,0,Newark - World Trade Center,Starting Jan 1 2017,Outbound,horizontal
+25,862,0,20170101,20180101,1,1,1,1,1,0,0,Newark - World Trade Center,Starting Jan 1 2017,Outbound,horizontal
+26,862,1,20170101,20180101,0,0,0,0,0,0,0,Newark - World Trade Center,Holiday Schedules,Inbound,horizontal
+27,862,1,20170101,20180101,0,0,0,0,0,0,1,Newark - World Trade Center,Starting Jan 1 2017,Inbound,horizontal
+28,862,1,20170101,20180101,0,0,0,0,0,1,0,Newark - World Trade Center,Starting Jan 1 2017,Inbound,horizontal
+29,862,1,20170101,20180101,1,1,1,1,1,0,0,Newark - World Trade Center,Starting Jan 1 2017,Inbound,horizontal
+30,5746,0,20170208,20180101,1,1,1,1,1,1,1,Purple Route,Beginning February 20th,No direction,horizontal
+31,5745,0,20170208,20180101,1,1,1,1,1,1,1,Red Route,Beginning February 20th,No direction,horizontal

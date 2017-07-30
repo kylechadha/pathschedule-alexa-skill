@@ -7,9 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "alexa",
-    "skill",
-    "fact"
+    "path",
+    "new jersey",
+    "schedule",
+    "train"
   ],
   "author": "kylechadha",
   "license": "Apache-2.0",
