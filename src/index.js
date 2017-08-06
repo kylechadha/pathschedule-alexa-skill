@@ -1,7 +1,6 @@
 'use strict';
 const Alexa = require('alexa-sdk');
 const moment = require('moment');
-const gtfs = require('gtfs');
 require('moment-timezone');
 
 const APP_ID = "amzn1.ask.skill.63a0aa76-b819-4f1e-ae45-bc96abb7cc4b";
@@ -29,30 +28,11 @@ let handlers = {
         this.emit('AMAZON.HelpIntent');
     },
     'GetNextTrainIntent': function () {
-        // Import the GTFS data.
-        let config = {
-            agencies: [
-                {
-                    agency_key: 'path',
-                    path: "/data/path-nj-us",
-                    exclude: [
-                        'shapes'
-                    ]
-                }
-            ]
-            // "verbose": false
-        };
-
-        gtfs.import(config).then(() => {
-            console.log('Import Successful');
-        }).catch(err => {
-            console.error(err);
-        });
-
-        gtfs.agencies()
-        .then(agencies => {
-            console.log(agencies[0]);
-        });
+        // NEXT STEPS:
+        // - load in the csv's and see what the map obj you get back looks like
+        // - alternately, can try csv to json converter and put data directly in this file
+        // - also consider creating a single excel worksheet with all the information you need pulled in (ideally in a repeatable process),
+        // then loading that in one go
 
         // Parse & validate the stops from the request.
         let firstStop = this.event.request.intent.slots.first_stop.value;
