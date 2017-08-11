@@ -1,5 +1,6 @@
 'use strict';
 const Alexa = require('alexa-sdk');
+const csv = require('babyparse');
 const moment = require('moment');
 require('moment-timezone');
 
@@ -28,11 +29,13 @@ let handlers = {
         this.emit('AMAZON.HelpIntent');
     },
     'GetNextTrainIntent': function () {
-        // NEXT STEPS:
-        // - load in the csv's and see what the map obj you get back looks like
-        // - alternately, can try csv to json converter and put data directly in this file
-        // - also consider creating a single excel worksheet with all the information you need pulled in (ideally in a repeatable process),
-        // then loading that in one go
+        // ** Could also convert csv to json ahead of time, just put data directly in this file
+        let gtfs = csv.parseFiles('data/path-gtfs.csv', {delimiter: ",", fastMode: true, header: true});
+        if (gtfs.errors.length > 0) {
+            console.log(gtfs.errors);
+            this.emit(':tell', "There was a parsing error. Please leave us detailed feedback on our skills page and we'll get back to you as soon as possible.");
+            return;
+        }
 
         // Parse & validate the stops from the request.
         let firstStop = this.event.request.intent.slots.first_stop.value;
@@ -54,6 +57,15 @@ let handlers = {
 
         firstStop = firstStop.toLowerCase();
         lastStop = lastStop.toLowerCase();
+
+        // ** create a map with messed up names ("turn on square") and their fixes
+        // turn on square = journal square
+        // paris = harrison
+        // paris hilton = harrison
+        // thirty three = 33rd street
+        // thirty thursday = 33rd street
+        // twenty tree = 23rd street
+        // new york = newark
 
         let firstFound = false;
         let lastFound = false;
@@ -78,6 +90,15 @@ let handlers = {
            // *reprompt for last stop*
                this.emit(':tellWithCard', "First: "+ firstStop + ", last not found.", "Next two train times:", firstStop);
                return;
+        }
+
+        let tripMap = {};
+        let valid;
+        for (let i = 0; i < gtfs.data.length; i++) {
+            let trip = gtfs.data.length[i]
+            if (trip["STOP_NAME"] = firstStop) {
+                tripMap[trip["trip_id"]] += [trip];
+            }
         }
 
 //        let now = moment();
@@ -121,3 +142,5 @@ let handlers = {
 // "Your default route has been set from Journal Square to 33rd Street. In the future, just ask 'What's next' to
 // get train times."
 // this.attributes[”yourAttribute"] = ’value’;
+
+// I could not find a route with that start and end stop. [if it's a holiday] However, I noticed that today is a holiday. It's possible your requested train is running on an alternate route as a result.

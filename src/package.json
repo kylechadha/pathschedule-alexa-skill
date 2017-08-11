@@ -20,6 +20,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "alexa-sdk": "^1.0.10",
+    "babyparse": "^0.4.6",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13"
   }
