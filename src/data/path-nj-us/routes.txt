@@ -1,9 +1,0 @@
-agency_id,route_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color,route_sort_order,min_headway_minutes
-631,5744,,Blue Route,10 - B,3,,1C5FA9,FFFFFF,0,5
-631,5746,,Purple Route,B - C/D,3,,792B79,FFFFFF,0,8
-631,5745,,Red Route,10 - C/D,3,,CF302C,FFFFFF,0,6
-151,859,PATH,Hoboken - 33rd Street,,2,http://www.panynj.gov/path/pdf/path-map-schedule-english_dec25.pdf,4d92fb,000000,0,
-151,860,PATH,Hoboken - World Trade Center,,2,http://www.panynj.gov/path/pdf/path-map-schedule-english_dec25.pdf,65c100,000000,0,
-151,861,PATH,Journal Square - 33rd Street,,2,http://www.panynj.gov/path/pdf/path-map-schedule-english_dec25.pdf,FF9900,000000,0,
-151,1024,PATH,Journal Square - 33rd Street (via Hoboken),,2,http://www.panynj.gov/path/pdf/path-map-schedule-english_dec25.pdf,FF9900,000000,0,
-151,862,PATH,Newark - World Trade Center,,2,http://www.panynj.gov/path/pdf/path-map-schedule-english_dec25.pdf,d93a30,ffffff,0,
