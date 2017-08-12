@@ -28,14 +28,6 @@ let handlers = {
         this.emit('AMAZON.HelpIntent');
     },
     'GetNextTrainIntent': function () {
-        // ** Could also convert csv to json ahead of time, just put data directly in this file
-        // let gtfs = csv.parseFiles('data/path-gtfs.csv', {delimiter: ",", fastMode: true, header: true});
-        // if (gtfs.errors.length > 0) {
-        //     console.log(gtfs.errors);
-        //     this.emit(':tell', "There was a parsing error. Please leave us detailed feedback on our skills page and we'll get back to you as soon as possible.");
-        //     return;
-        // }
-
         // Parse & validate the stops from the request.
         let firstStop = this.event.request.intent.slots.first_stop.value;
         let lastStop = this.event.request.intent.slots.last_stop.value;
@@ -90,15 +82,6 @@ let handlers = {
                this.emit(':tellWithCard', "First: "+ firstStop + ", last not found.", "Next two train times:", firstStop);
                return;
         }
-
-        // let tripMap = {};
-        // let valid;
-        // for (let i = 0; i < gtfs.data.length; i++) {
-        //     let trip = gtfs.data.length[i]
-        //     if (trip["STOP_NAME"] = firstStop) {
-        //         tripMap[trip["trip_id"]] += [trip];
-        //     }
-        // }
 
 //        let now = moment();
 //        let next, nextTwo;
