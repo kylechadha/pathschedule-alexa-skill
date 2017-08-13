@@ -4,6 +4,7 @@ require('moment-timezone');
 
 module.exports = {
     nextTwo: nextTwo,
+    correctStops: correctStops,
 };
 
 function nextTwo(firstStop, lastStop) {
@@ -17,7 +18,7 @@ function nextTwo(firstStop, lastStop) {
     //  - Holidays: 5459A6540
     let service;
     let isHoliday;
-    let now = moment();
+    let now = moment().tz("America/New_York");
     console.log("Time: " + now.format("MM/DD/YY h:mm:ss a"));
 
     // Check if today is a holiday.
@@ -96,14 +97,20 @@ function nextTwo(firstStop, lastStop) {
     }
     stopTimes.sort(function (a, b) {  return new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b);  });
 
+    let routesFound = 0;
     console.log("Possible routes:");
     for (let key in routeMap) {
+        routesFound++;
         console.log("Route " + routeMap[key]["route"] + ", Direction " + routeMap[key]["direction"]);
     }
+    if (routesFound == 0) {
+        return {error: "No routes found"};
+    }
 
-    // Iterate through the stop times.
+    // Determine the next two stop times.
     let next, nextAfter;
     for (let i = 0; i < stopTimes.length; i++) {
+        // Correct for PATH gtfs time formatting (no leading zero).
         let stopTimeRaw = stopTimes[i];
         if (stopTimeRaw.length === 7) {
             stopTimeRaw = "0"+stopTimeRaw;
@@ -113,8 +120,10 @@ function nextTwo(firstStop, lastStop) {
         if (now.isBefore(stopTime)) {
             next = stopTime;
 
+            // If the second time is past the last train for the day.
             // ** This is only a stopgap measure, it does not handle change in schedules b/w days.
             if (i === (stopTimes.length-1)) {
+                console.log("Rolling over nextAfter to next day");
                 i = -1;
             }
             let nextStopTimeRaw = stopTimes[i+1];
@@ -124,11 +133,60 @@ function nextTwo(firstStop, lastStop) {
             nextAfter = moment.tz(now.format("YYYY-MM-DDT")+nextStopTimeRaw, 'America/New_York');
             break;
         }
+
+        // If both times are past the last train for the day.
+        if (i === (stopTimes.length-1)) {
+            console.log("Rolling over both next and nextAfter to next day");
+            next = moment.tz(now.format("YYYY-MM-DDT")+"0"+stopTimes[0], 'America/New_York');
+            nextAfter = moment.tz(now.format("YYYY-MM-DDT")+"0"+stopTimes[1], 'America/New_York');
+            break;
+        }
     }
     console.log("Next two times: " + next.format("h:mm a") + ", " + nextAfter.format("h:mm a"));
 
     return {next: next, nextAfter: nextAfter}
 }
 
+function correctStops(stop) {
+    // ** can also strip out front and five from start of string
+    // + change stream for street
+    switch (stop) {
+    case "turn on square":
+    case "turn off square":
+    case "journals clare":
+    case "turn on stay":
+    case "journal squared":
+    case "journals square":
+    case "journals player":
+    case "journal swear":
+        console.log("Corrected from " + stop + " to Journal Square");
+        return "journal square";
+    case "paris":
+    case "paris hilton":
+        console.log("Corrected from " + stop + " to Harrison");
+        return "harrison";
+    case "thirty three":
+    case "thirty thursday":
+    case "thirty thirty three":
+    case "dirty third stream":
+        console.log("Corrected from " + stop + " to 33rd Street");
+        return "33rd street";
+    case "twenty tree":
+    case "two thirty":
+        console.log("Corrected from " + stop + " to 23rd Street");
+        return "23rd street";
+    case "new york":
+        console.log("Corrected from " + stop + " to Newark");
+        return "newark";
+    case "change place":
+    case "james place":
+        console.log("Corrected from " + stop + " to Exchange Place");
+        return "exchange place";
+    default:
+        return stop;
+    }
+}
+
 // Debugging:
 // nextTwo("newark", "world trade center");
+// console.log(correctStops("thirty thursday"));

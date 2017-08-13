@@ -29,30 +29,30 @@ let handlers = {
         let lastStop = this.event.request.intent.slots.last_stop.value;
 
         if (!firstStop && !lastStop) {
-            this.emit(':tellWithCard', "Neither defined", "Next two train times:", "none");
+            // this.emit(':tellWithCard', "Neither defined", "Next two train times:", "none");
+            console.log("Both slots undefined");
+            this.emit(':tellWithCard', "Hm, I couldn't understand that", "Error:", "Both stops undefined");
             return;
         }
         if (!firstStop) {
            // *reprompt for first stop*
-               this.emit(':tellWithCard', "Last: "+ lastStop+", first undefined.", "Next two train times:", lastStop);
+           //     this.emit(':tellWithCard', "Last: "+ lastStop+", first undefined.", "Next two train times:", lastStop);
+            console.log("First slot undefined. Last: " + lastStop);
+            this.emit(':tellWithCard', "Hm, I couldn't understand that", "Error:", "First stop undefined, last: " + lastStop);
                return;
         } else if (!lastStop) {
            // *reprompt for last stop*
-               this.emit(':tellWithCard', "First: "+ firstStop + ", last undefined.", "Next two train times:", firstStop);
+           //     this.emit(':tellWithCard', "First: "+ firstStop + ", last undefined.", "Next two train times:", firstStop);
+            console.log("Last slot undefined. First: " + firstStop);
+            this.emit(':tellWithCard', "Hm, I couldn't understand that", "Error:", "Last stop undefined, first: " + firstStop);
                return;
         }
 
         firstStop = firstStop.toLowerCase();
         lastStop = lastStop.toLowerCase();
 
-        // ** create a map with messed up names ("turn on square") and their fixes
-        // turn on square = journal square
-        // paris = harrison
-        // paris hilton = harrison
-        // thirty three = 33rd street
-        // thirty thursday = 33rd street
-        // twenty tree = 23rd street
-        // new york = newark
+        firstStop = app.correctStops(firstStop);
+        lastStop = app.correctStops(lastStop);
 
         let firstFound = false;
         let lastFound = false;
@@ -66,22 +66,33 @@ let handlers = {
         });
 
         if (!firstFound && !lastFound) {
-            this.emit(':tellWithCard', "Neither found", "Next two train times:", "none");
+            // this.emit(':tellWithCard', "Neither found", "Next two train times:", "none");
+            console.log("Both slots not found. First: " + firstStop + ". Last: " + lastStop);
+            this.emit(':tellWithCard', "Hm, I couldn't find that stop in the database", "Error:", "Both stops not found");
             return;
         }
         if (!firstFound) {
            // *reprompt for first stop*
-               this.emit(':tellWithCard', "Last: "+ lastStop+", First not found.", "Next two train times:", lastStop);
+           //     this.emit(':tellWithCard', "Last: "+ lastStop+", First not found.", "Next two train times:", lastStop);
+            console.log("First slot not found. First: " + firstStop + ". Last: " + lastStop);
+            this.emit(':tellWithCard', "Hm, I couldn't find that stop in the database", "Error:", "First stop not found. Last: " + lastStop);
                return;
         } else if (!lastFound) {
            // *reprompt for last stop*
-               this.emit(':tellWithCard', "First: "+ firstStop + ", last not found.", "Next two train times:", firstStop);
+           //     this.emit(':tellWithCard', "First: "+ firstStop + ", last not found.", "Next two train times:", firstStop);
+            console.log("Last slot undefined. First: " + firstStop + ". Last: " + lastStop);
+            this.emit(':tellWithCard', "Hm, I couldn't find that stop in the database", "Error:", "Last stop not found. First: " + firstStop);
                return;
         }
 
         let trains = app.nextTwo(firstStop, lastStop);
+        if (trains.error) {
+            this.emit(':tell', trains.error);
+            return;
+        }
+
         let times = trains.next.format("h:mm a") + " and " + trains.nextAfter.format("h:mm a");
-        let speechOutput = GET_NEXT_TRAINS_MESSAGE + times + ". The first stop is " + firstStop + ". The last stop is " + lastStop + ".";
+        let speechOutput = GET_NEXT_TRAINS_MESSAGE + times;
         this.emit(':tellWithCard', speechOutput, "Next two train times:", times);
     },
     'AMAZON.HelpIntent': function () {
